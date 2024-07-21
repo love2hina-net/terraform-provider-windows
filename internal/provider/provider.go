@@ -7,6 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	idatasource "github.com/love2hina-net/terraform-provider-windows/internal/provider/datasource"
 )
 
 // インターフェースの確認
@@ -43,5 +44,7 @@ func (p *WindowsProvider) Resources(ctx context.Context) []func() resource.Resou
 }
 
 func (p *WindowsProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
-	return nil
+	return []func() datasource.DataSource{
+		idatasource.NewConnectionWinRM,
+	}
 }
